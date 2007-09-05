@@ -10,10 +10,6 @@ import org.apache.mina.common.ByteBuffer;
 import org.apache.mina.filter.codec.ProtocolDecoder;
 import org.apache.mina.filter.codec.ProtocolDecoderOutput;
 import org.junit.Test;
-import org.lastbamboo.common.tcp.frame.TcpFrame;
-import org.lastbamboo.common.tcp.frame.TcpFrameCodecFactory;
-import org.lastbamboo.common.tcp.frame.TcpFrameEncoder;
-import org.lastbamboo.common.util.mina.MinaUtils;
 
 public class TcpFrameEncoderDecoderTest
     {
@@ -49,10 +45,9 @@ public class TcpFrameEncoderDecoderTest
         
         final TcpFrame readFrame = frames.iterator().next();
         assertEquals(dataBytes.length, readFrame.getLength());
-        final ByteBuffer readData = readFrame.getData();
+        final byte[] readData = readFrame.getData();
         
-        final byte[] readDataBytes = MinaUtils.toByteArray(readData);
-        for (final byte b : readDataBytes)
+        for (final byte b : readData)
             {
             assertEquals((byte)0x02, b);
             }

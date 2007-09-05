@@ -36,8 +36,8 @@ public final class TcpFrame
      * 
      * @return The framed data buffer.
      */
-    public ByteBuffer getData()
+    public byte[] getData()
         {
-        return ByteBuffer.wrap(this.m_data);
+        return this.m_data;
         }
     }
