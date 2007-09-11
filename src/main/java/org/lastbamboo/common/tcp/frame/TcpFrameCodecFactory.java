@@ -11,7 +11,8 @@ import org.lastbamboo.common.util.mina.DemuxingStateMachineProtocolDecoder;
  * {@link DemuxableProtocolCodecFactory} for framed TCP data as defined in 
  * RFC 4571. 
  */
-public class TcpFrameCodecFactory implements DemuxableProtocolCodecFactory
+public class TcpFrameCodecFactory
+        implements DemuxableProtocolCodecFactory<TcpFrame>
     {
 
     public boolean canDecode(final ByteBuffer in)
@@ -22,7 +23,7 @@ public class TcpFrameCodecFactory implements DemuxableProtocolCodecFactory
         return true;
         }
 
-    public Class getClassToEncode()
+    public Class<TcpFrame> getClassToEncode()
         {
         return TcpFrame.class;
         }
