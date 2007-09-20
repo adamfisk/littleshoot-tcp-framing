@@ -17,13 +17,13 @@ import org.slf4j.LoggerFactory;
 public class TcpFrameDecodingState extends DecodingStateMachine 
     {
 
-    private final static Logger LOG = 
+    private final static Logger m_log = 
         LoggerFactory.getLogger(TcpFrameDecodingState.class);
     
     @Override
     protected DecodingState init() throws Exception
         {
-        LOG.debug("Initing...");
+        m_log.debug("Initing...");
         return new ReadMessageLength();
         }
 
@@ -36,7 +36,7 @@ public class TcpFrameDecodingState extends DecodingStateMachine
     protected DecodingState finishDecode(final List<Object> childProducts, 
         final ProtocolDecoderOutput out) throws Exception
         {
-        LOG.error("Got finish decode for full message");
+        m_log.error("Got finish decode for full message");
         return null;
         }
     
@@ -47,7 +47,7 @@ public class TcpFrameDecodingState extends DecodingStateMachine
         protected DecodingState finishDecode(final int length, 
             final ProtocolDecoderOutput out) throws Exception
             {
-            LOG.debug("Read message length: "+length);
+            m_log.debug("Read message length: "+length);
             return new ReadBody(length);
             }
     
@@ -67,13 +67,13 @@ public class TcpFrameDecodingState extends DecodingStateMachine
             {
             if (readData.remaining() != m_length)
                 {
-                LOG.error("Read body of unexpected length." +
+                m_log.error("Read body of unexpected length." +
                     "\nExpected length:  "+m_length+
                     "\nRemaining length: "+readData.remaining());
                 }
             
             final TcpFrame message = new TcpFrame(readData);
-            
+            m_log.debug("Writing TCP Frame message to IoHandler...");
             out.write(message);
             return null;
             }

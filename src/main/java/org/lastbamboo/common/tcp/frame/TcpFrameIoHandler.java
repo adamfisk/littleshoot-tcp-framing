@@ -24,8 +24,11 @@ public class TcpFrameIoHandler extends StreamIoHandler
     private IoSessionSocket m_socket;
     
     @Override
-    protected void processStreamIo(IoSession session, InputStream in, OutputStream out)
+    protected void processStreamIo(final IoSession session, 
+        final InputStream in, final OutputStream out)
         {
+        m_log.debug(getClass().getSimpleName() + hashCode() + 
+            " processing IO stream...");
         this.m_socket = new IoSessionSocket(session, in, out);
         }
 
@@ -39,6 +42,12 @@ public class TcpFrameIoHandler extends StreamIoHandler
     public Socket getSocket()
         {
         m_log.debug("Accessing TCP socket...");
-        return m_socket;
+        if (this.m_socket == null)
+            {
+            throw new NullPointerException(
+                getClass().getSimpleName() + hashCode() +
+                " has yet to establish socket");
+            }
+        return this.m_socket;
         }
     }

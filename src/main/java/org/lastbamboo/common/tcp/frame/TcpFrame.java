@@ -10,7 +10,7 @@ public final class TcpFrame
     {
 
     private final byte[] m_data;
-
+    
     /**
      * Creates a new TCP frame for the specified framed data.
      * 
@@ -18,7 +18,23 @@ public final class TcpFrame
      */
     public TcpFrame(final ByteBuffer data)
         {
-        m_data = MinaUtils.toByteArray(data);
+        this(MinaUtils.toByteArray(data));
+        }
+    
+    /**
+     * Creates a new {@link TcpFrame}.
+     * 
+     * @param data The data.
+     */
+    public TcpFrame(final byte[] data)
+        {
+        if (data.length > 0xffff)
+            {
+            throw new IllegalArgumentException(
+                "Data length must be smaller than: "+0xffff+" but is:"+
+                data.length);
+            }
+        m_data = data;
         }
 
     /**
@@ -39,5 +55,11 @@ public final class TcpFrame
     public byte[] getData()
         {
         return this.m_data;
+        }
+    
+    @Override
+    public String toString()
+        {
+        return getClass().getSimpleName();
         }
     }

@@ -14,7 +14,7 @@ import org.lastbamboo.common.util.mina.DemuxingStateMachineProtocolDecoder;
 public class TcpFrameCodecFactory
         implements DemuxableProtocolCodecFactory<TcpFrame>
     {
-
+    
     public boolean canDecode(final ByteBuffer in)
         {
         // We rely on something else, such as STUN, to differentiate packets.
@@ -40,4 +40,8 @@ public class TcpFrameCodecFactory
         return new TcpFrameProtocolEncoder();
         }
 
+    public String toString()
+        {
+        return getClass().getSimpleName();
+        }
     }
