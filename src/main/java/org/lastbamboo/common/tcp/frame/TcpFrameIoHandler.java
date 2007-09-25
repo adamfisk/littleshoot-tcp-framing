@@ -22,13 +22,29 @@ public class TcpFrameIoHandler extends StreamIoHandler
     private final Logger m_log = LoggerFactory.getLogger(getClass());
     
     private IoSessionSocket m_socket;
+
+    /**
+     * Just useful for debugging all the existing {@link TcpFrameIoHandler}s
+     * out there.
+     */
+    private int m_handlerId = 0;;
+
+    private static int s_handlerId = 0;
+
+    /**
+     * Creates a new {@link TcpFrameIoHandler}.
+     */
+    public TcpFrameIoHandler()
+        {
+        this.m_handlerId = s_handlerId;
+        s_handlerId++;
+        }
     
     @Override
     protected void processStreamIo(final IoSession session, 
         final InputStream in, final OutputStream out)
         {
-        m_log.debug(getClass().getSimpleName() + hashCode() + 
-            " processing IO stream...");
+        m_log.debug(this + " processing IO stream...");
         this.m_socket = new IoSessionSocket(session, in, out);
         }
 
@@ -44,10 +60,15 @@ public class TcpFrameIoHandler extends StreamIoHandler
         m_log.debug("Accessing TCP socket...");
         if (this.m_socket == null)
             {
-            throw new NullPointerException(
-                getClass().getSimpleName() + hashCode() +
-                " has yet to establish socket");
+            throw new NullPointerException(this+" has yet to establish socket");
             }
         return this.m_socket;
+        }
+    
+    @Override 
+    public String toString()
+        {
+        return getClass().getSimpleName()+" "+m_handlerId+" with socket: "+
+            this.m_socket;
         }
     }
