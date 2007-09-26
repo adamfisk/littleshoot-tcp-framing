@@ -2,6 +2,8 @@ package org.lastbamboo.common.tcp.frame;
 
 import org.apache.mina.common.ByteBuffer;
 import org.lastbamboo.common.util.mina.MinaUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Encoder for framed TCP messages, as defined in RFC 4571. 
@@ -9,6 +11,8 @@ import org.lastbamboo.common.util.mina.MinaUtils;
 public class TcpFrameEncoder
     {
 
+    private final Logger m_log = LoggerFactory.getLogger(getClass());
+    
     /**
      * Encodes the TCP frame into a {@link ByteBuffer}.
      * 
@@ -22,6 +26,7 @@ public class TcpFrameEncoder
         MinaUtils.putUnsignedShort(buf, length);
         buf.put(frame.getData());
         buf.flip();
+        m_log.debug("Encoded TCP Frame as buffer: {}", buf);
         return buf;
         }
 
