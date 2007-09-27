@@ -50,6 +50,7 @@ public class TcpFrameIoHandler extends StreamIoHandler
 
     public void messageReceived(final IoSession session, final Object message)
         {
+        m_log.debug("Received message on TCP frame: {}", message);
         final TcpFrame frame = (TcpFrame) message;
         final byte[] data = frame.getData();
         super.messageReceived(session, ByteBuffer.wrap(data));
