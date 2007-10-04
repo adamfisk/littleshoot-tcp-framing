@@ -1,14 +1,13 @@
 package org.lastbamboo.common.tcp.frame;
 
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
 import org.apache.mina.common.ByteBuffer;
 import org.apache.mina.common.IoHandler;
 import org.apache.mina.common.IoSession;
-import org.apache.mina.handler.StreamIoHandler;
-import org.lastbamboo.common.util.mina.IoSessionSocket;
+import org.lastbamboo.common.util.mina.IoSessionOutputStreamFactory;
+import org.lastbamboo.common.util.mina.SocketIoHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,12 +15,12 @@ import org.slf4j.LoggerFactory;
  * {@link IoHandler} that reads framed TCP messages and makes the bytes from
  * those messages available. 
  */
-public class TcpFrameIoHandler extends StreamIoHandler
+public class TcpFrameIoHandler extends SocketIoHandler
     {
     
     private final Logger m_log = LoggerFactory.getLogger(getClass());
     
-    private IoSessionSocket m_socket;
+    private Socket m_socket;
 
     /**
      * Just useful for debugging all the existing {@link TcpFrameIoHandler}s
@@ -36,18 +35,23 @@ public class TcpFrameIoHandler extends StreamIoHandler
      */
     public TcpFrameIoHandler()
         {
+        super (new IoSessionOutputStreamFactory()
+            {
+            public OutputStream newStream(final IoSession session)
+                {
+                return new TcpFrameIoSessionOutputStream(session);
+                }
+            });
         this.m_handlerId = s_handlerId;
         s_handlerId++;
         }
-    
-    @Override
-    protected void processStreamIo(final IoSession session, 
-        final InputStream in, final OutputStream out)
-        {
-        m_log.debug(this + " processing IO stream...");
-        this.m_socket = new IoSessionSocket(session, in, out);
-        }
 
+    @Override
+    protected void onSocket(final Socket sock)
+        {
+        this.m_socket = sock;
+        }
+    
     public void messageReceived(final IoSession session, final Object message)
         {
         m_log.debug("Received message on TCP frame: {}", message);

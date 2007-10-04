@@ -1,5 +1,6 @@
 package org.lastbamboo.common.tcp.frame;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.mina.common.ByteBuffer;
 import org.lastbamboo.common.util.mina.MinaUtils;
 
@@ -34,7 +35,14 @@ public final class TcpFrame
                 "Data length must be smaller than: "+0xffff+" but is:"+
                 data.length);
             }
-        m_data = data;
+        m_data = data.clone();
+        }
+
+    public TcpFrame(final byte[] data, final  int off, final int len)
+        {
+        // TODO: Figure out a more efficient way of doing this?  Possibly
+        // using ByteBuffers internally, something like that?
+        this.m_data = ArrayUtils.subarray(data, off, len);
         }
 
     /**
@@ -54,7 +62,7 @@ public final class TcpFrame
      */
     public byte[] getData()
         {
-        return this.m_data;
+        return this.m_data.clone();
         }
     
     @Override

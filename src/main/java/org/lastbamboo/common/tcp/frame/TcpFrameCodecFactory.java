@@ -12,7 +12,7 @@ import org.lastbamboo.common.util.mina.DemuxingStateMachineProtocolDecoder;
  * RFC 4571. 
  */
 public class TcpFrameCodecFactory
-        implements DemuxableProtocolCodecFactory<TcpFrame>
+    implements DemuxableProtocolCodecFactory<TcpFrame>
     {
     
     public boolean canDecode(final ByteBuffer in)
