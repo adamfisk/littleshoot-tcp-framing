@@ -46,11 +46,13 @@ public class TcpFrameIoHandler extends SocketIoHandler
         s_handlerId++;
         }
 
+    /*
     @Override
     protected void onSocket(final Socket sock)
         {
         this.m_socket = sock;
         }
+        */
     
     public void messageReceived(final IoSession session, final Object message)
         {
@@ -60,6 +62,7 @@ public class TcpFrameIoHandler extends SocketIoHandler
         super.messageReceived(session, ByteBuffer.wrap(data));
         }
 
+    /*
     public Socket getSocket()
         {
         m_log.debug("Accessing TCP socket...");
@@ -69,6 +72,7 @@ public class TcpFrameIoHandler extends SocketIoHandler
             }
         return this.m_socket;
         }
+        */
     
     @Override 
     public String toString()
