@@ -26,7 +26,7 @@ public class TcpFrameEncoder
         MinaUtils.putUnsignedShort(buf, length);
         buf.put(frame.getData());
         buf.flip();
-        m_log.debug("Encoded TCP Frame as buffer: {}", buf);
+        //m_log.debug("Encoded TCP Frame as buffer: {}", buf);
         return buf;
         }
 
