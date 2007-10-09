@@ -60,7 +60,7 @@ public class TcpFrameClientIoHandler extends SocketIoHandler
     public void messageSent(final IoSession session, final Object message) 
         throws Exception  
         {
-        m_log.debug("TCP frame messages sent: {}", message);
+        m_log.debug("TCP frame messages sent: {}",session.getWrittenMessages());
         m_log.debug("TCP frame bytes sent: {}", session.getWrittenBytes());
         super.messageSent(session, message);
         }
