@@ -52,7 +52,7 @@ public class TcpFrameClientIoHandler extends SocketIoHandler
         final byte[] data = frame.getData();
         if (m_log.isDebugEnabled())
             {
-            m_log.debug("Received data:\n{}", new String(data));
+            //m_log.debug("Received data:\n{}", new String(data));
             }
         super.messageReceived(session, ByteBuffer.wrap(data));
         }
