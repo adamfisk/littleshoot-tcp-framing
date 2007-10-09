@@ -28,6 +28,11 @@ public final class TcpFrameIoSessionOutputStream
         // we'd wrap every single byte in a TCP frame, so this takes care of
         // most cases.  Most code will generally use the bulk write methods,
         // so we should be in fairly good shape.
+        if (m_log.isDebugEnabled())
+            {
+            m_log.debug("Wrapping data in a TCP frame: {}", 
+                new String(b, "US-ASCII"));
+            }
         write(new TcpFrame(ArrayUtils.subarray(b, off, len)));
         }
 
