@@ -21,21 +21,22 @@ public final class TcpFrameIoSessionOutputStream
         }
     
     @Override
-    public void write(final byte[] b, final int off, 
-        final int len) throws IOException
+    public void write(final byte[] b, final int off, final int len) 
+        throws IOException
         {
         // This override is key because OutputStream typically calls write(byte)
         // for each byte here.  We need to overwrite that because otherwise
         // we'd wrap every single byte in a TCP frame, so this takes care of
         // most cases.  Most code will generally use the bulk write methods,
         // so we should be in fairly good shape.
+        final byte[] subArray = ArrayUtils.subarray(b, off, len);
         if (m_log.isDebugEnabled())
             {
             m_log.debug("Wrapping data in a TCP frame: {}", 
-                new String(b, "US-ASCII"));
-            m_log.debug("Data length is: "+b.length);
+                new String(subArray, "US-ASCII"));
+            m_log.debug("Data length is: "+subArray.length);
             }
-        write(new TcpFrame(ArrayUtils.subarray(b, off, len)));
+        write(new TcpFrame(subArray));
         }
 
     @Override

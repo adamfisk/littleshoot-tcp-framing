@@ -26,6 +26,8 @@ public class TcpFrameClientIoHandler extends SocketIoHandler
     private int m_handlerId = 0;;
 
     private static int s_handlerId = 0;
+    
+    private int m_messageReceived = 0;
 
     /**
      * Creates a new {@link TcpFrameClientIoHandler}.
@@ -46,8 +48,14 @@ public class TcpFrameClientIoHandler extends SocketIoHandler
     public void messageReceived(final IoSession session, final Object message)
         {
         m_log.debug("Received message on TCP frame: {}", message);
+        m_messageReceived++;
+        m_log.debug("TCP frames received: {}", m_messageReceived);
         final TcpFrame frame = (TcpFrame) message;
         final byte[] data = frame.getData();
+        if (m_log.isDebugEnabled())
+            {
+            //m_log.debug("Received data: {}", new String(data));
+            }
         super.messageReceived(session, ByteBuffer.wrap(data));
         }
     
@@ -55,6 +63,7 @@ public class TcpFrameClientIoHandler extends SocketIoHandler
         throws Exception  
         {
         m_log.debug("Sent message: {}", message);
+        m_log.debug("Session bytes sent: {}", session.getWrittenBytes());
         super.messageSent(session, message);
         }
     
