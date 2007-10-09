@@ -15,6 +15,7 @@ public final class TcpFrameIoSessionOutputStream
     private final Logger m_log = LoggerFactory.getLogger(getClass());
     
     private volatile long m_rawBytesWritten = 0;
+
     
     public TcpFrameIoSessionOutputStream(final IoSession session) 
         {
@@ -34,6 +35,8 @@ public final class TcpFrameIoSessionOutputStream
         final byte[] subArray = ArrayUtils.subarray(b, off, len);
         if (m_log.isDebugEnabled())
             {
+            final String dataString = new String(subArray, "US-ASCII");
+            m_log.debug("Sending data:\n{}", dataString);
             //m_log.debug("Wrapping data in a TCP frame: {}", 
               //  new String(subArray, "US-ASCII"));
             m_log.debug("Data length is: "+subArray.length);
