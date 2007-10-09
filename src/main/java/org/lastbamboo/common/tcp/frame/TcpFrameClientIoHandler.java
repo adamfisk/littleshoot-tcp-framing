@@ -1,7 +1,6 @@
 package org.lastbamboo.common.tcp.frame;
 
 import java.io.OutputStream;
-import java.net.Socket;
 
 import org.apache.mina.common.ByteBuffer;
 import org.apache.mina.common.IoHandler;
@@ -19,8 +18,6 @@ public class TcpFrameClientIoHandler extends SocketIoHandler
     {
     
     private final Logger m_log = LoggerFactory.getLogger(getClass());
-    
-    private Socket m_socket;
 
     /**
      * Just useful for debugging all the existing {@link TcpFrameClientIoHandler}s
@@ -45,14 +42,6 @@ public class TcpFrameClientIoHandler extends SocketIoHandler
         this.m_handlerId = s_handlerId;
         s_handlerId++;
         }
-
-    /*
-    @Override
-    protected void onSocket(final Socket sock)
-        {
-        this.m_socket = sock;
-        }
-        */
     
     public void messageReceived(final IoSession session, final Object message)
         {
@@ -61,23 +50,17 @@ public class TcpFrameClientIoHandler extends SocketIoHandler
         final byte[] data = frame.getData();
         super.messageReceived(session, ByteBuffer.wrap(data));
         }
-
-    /*
-    public Socket getSocket()
+    
+    public void messageSent(final IoSession session, final Object message) 
+        throws Exception  
         {
-        m_log.debug("Accessing TCP socket...");
-        if (this.m_socket == null)
-            {
-            throw new NullPointerException(this+" has yet to establish socket");
-            }
-        return this.m_socket;
+        m_log.debug("Sent message: {}", message);
+        super.messageSent(session, message);
         }
-        */
     
     @Override 
     public String toString()
         {
-        return getClass().getSimpleName()+" "+m_handlerId+" with socket: "+
-            this.m_socket;
+        return getClass().getSimpleName()+" "+m_handlerId;
         }
     }
