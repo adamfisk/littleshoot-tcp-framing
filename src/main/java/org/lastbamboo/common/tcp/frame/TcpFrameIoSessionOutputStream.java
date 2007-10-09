@@ -17,6 +17,7 @@ public final class TcpFrameIoSessionOutputStream
     public TcpFrameIoSessionOutputStream(final IoSession session) 
         {
         super(session);
+        m_log.debug("Created new TCP frame output stream");
         }
     
     @Override
