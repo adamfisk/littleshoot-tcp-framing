@@ -33,6 +33,7 @@ public final class TcpFrameIoSessionOutputStream
             {
             m_log.debug("Wrapping data in a TCP frame: {}", 
                 new String(b, "US-ASCII"));
+            m_log.debug("Data length is: "+b.length);
             }
         write(new TcpFrame(ArrayUtils.subarray(b, off, len)));
         }
