@@ -2,9 +2,10 @@ package org.lastbamboo.common.tcp.frame;
 
 import java.io.IOException;
 
-import org.apache.commons.lang.ArrayUtils;
+import org.apache.mina.common.ByteBuffer;
 import org.apache.mina.common.IoSession;
 import org.lastbamboo.common.util.mina.AbstractIoSessionOutputStream;
+import org.lastbamboo.common.util.mina.MinaUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +33,7 @@ public final class TcpFrameIoSessionOutputStream
         // we'd wrap every single byte in a TCP frame, so this takes care of
         // most cases.  Most code will generally use the bulk write methods,
         // so we should be in fairly good shape.
-        final byte[] subArray = ArrayUtils.subarray(b, off, len);
+        final byte[] subArray = MinaUtils.toByteArray(ByteBuffer.wrap(b, off, len));//ArrayUtils.subarray(b, off, len);
         if (m_log.isDebugEnabled())
             {
             final String dataString = new String(subArray, "US-ASCII");
