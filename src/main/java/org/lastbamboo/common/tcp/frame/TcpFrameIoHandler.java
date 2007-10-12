@@ -14,13 +14,13 @@ import org.slf4j.LoggerFactory;
  * {@link IoHandler} that reads framed TCP messages and makes the bytes from
  * those messages available. 
  */
-public class TcpFrameClientIoHandler extends SocketIoHandler
+public class TcpFrameIoHandler extends SocketIoHandler
     {
     
     private final Logger m_log = LoggerFactory.getLogger(getClass());
 
     /**
-     * Just useful for debugging all the existing {@link TcpFrameClientIoHandler}s
+     * Just useful for debugging all the existing {@link TcpFrameIoHandler}s
      * out there.
      */
     private int m_handlerId = 0;;
@@ -28,9 +28,9 @@ public class TcpFrameClientIoHandler extends SocketIoHandler
     private static int s_handlerId = 0;
     
     /**
-     * Creates a new {@link TcpFrameClientIoHandler}.
+     * Creates a new {@link TcpFrameIoHandler}.
      */
-    public TcpFrameClientIoHandler()
+    public TcpFrameIoHandler()
         {
         super (new IoSessionOutputStreamFactory()
             {
