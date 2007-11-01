@@ -22,6 +22,13 @@ public class TcpFrameCodecFactory
         // it from any other protocol.
         return true;
         }
+    
+    public boolean enoughData(final ByteBuffer in)
+        {
+        // We don't use TCP frame messages to differentiate protocols, so we 
+        // always have "enough" data.
+        return true;
+        }
 
     public Class<TcpFrame> getClassToEncode()
         {
