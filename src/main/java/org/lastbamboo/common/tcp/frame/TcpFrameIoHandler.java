@@ -43,6 +43,7 @@ public class TcpFrameIoHandler extends SocketIoHandler
         s_handlerId++;
         }
     
+    @Override
     public void messageReceived(final IoSession session, final Object message)
         {
         m_log.debug("Received message on TCP frame: {}", message);
@@ -57,6 +58,7 @@ public class TcpFrameIoHandler extends SocketIoHandler
         super.messageReceived(session, ByteBuffer.wrap(data));
         }
     
+    @Override
     public void messageSent(final IoSession session, final Object message) 
         throws Exception  
         {
