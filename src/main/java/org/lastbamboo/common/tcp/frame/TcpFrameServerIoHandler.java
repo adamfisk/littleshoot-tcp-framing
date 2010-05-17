@@ -4,17 +4,17 @@ import java.net.InetSocketAddress;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.mina.common.ByteBuffer;
-import org.apache.mina.common.ConnectFuture;
-import org.apache.mina.common.ExecutorThreadModel;
-import org.apache.mina.common.IdleStatus;
-import org.apache.mina.common.IoConnector;
-import org.apache.mina.common.IoHandler;
-import org.apache.mina.common.IoSession;
-import org.apache.mina.common.RuntimeIOException;
-import org.apache.mina.common.ThreadModel;
-import org.apache.mina.transport.socket.nio.SocketConnector;
-import org.apache.mina.util.SessionUtil;
+import org.littleshoot.mina.common.ByteBuffer;
+import org.littleshoot.mina.common.ConnectFuture;
+import org.littleshoot.mina.common.ExecutorThreadModel;
+import org.littleshoot.mina.common.IdleStatus;
+import org.littleshoot.mina.common.IoConnector;
+import org.littleshoot.mina.common.IoHandler;
+import org.littleshoot.mina.common.IoSession;
+import org.littleshoot.mina.common.RuntimeIOException;
+import org.littleshoot.mina.common.ThreadModel;
+import org.littleshoot.mina.transport.socket.nio.SocketConnector;
+import org.littleshoot.mina.util.SessionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

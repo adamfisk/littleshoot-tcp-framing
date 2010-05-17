@@ -2,9 +2,9 @@ package org.lastbamboo.common.tcp.frame;
 
 import java.io.OutputStream;
 
-import org.apache.mina.common.ByteBuffer;
-import org.apache.mina.common.IoHandler;
-import org.apache.mina.common.IoSession;
+import org.littleshoot.mina.common.ByteBuffer;
+import org.littleshoot.mina.common.IoHandler;
+import org.littleshoot.mina.common.IoSession;
 import org.lastbamboo.common.util.mina.IoSessionOutputStreamFactory;
 import org.lastbamboo.common.util.mina.SocketIoHandler;
 import org.slf4j.Logger;

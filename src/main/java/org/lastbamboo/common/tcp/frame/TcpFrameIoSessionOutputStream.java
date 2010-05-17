@@ -3,8 +3,8 @@ package org.lastbamboo.common.tcp.frame;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import org.apache.mina.common.ByteBuffer;
-import org.apache.mina.common.IoSession;
+import org.littleshoot.mina.common.ByteBuffer;
+import org.littleshoot.mina.common.IoSession;
 import org.lastbamboo.common.util.mina.AbstractIoSessionOutputStream;
 import org.lastbamboo.common.util.mina.MinaUtils;
 import org.slf4j.Logger;
