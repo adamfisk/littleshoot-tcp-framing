@@ -2,8 +2,8 @@ package org.lastbamboo.common.tcp.frame;
 
 import org.littleshoot.mina.common.ByteBuffer;
 import org.littleshoot.mina.filter.codec.ProtocolDecoderOutput;
-import org.lastbamboo.common.util.mina.DecodingState;
-import org.lastbamboo.common.util.mina.DecodingStateFactory;
+import org.littleshoot.util.mina.DecodingState;
+import org.littleshoot.util.mina.DecodingStateFactory;
 
 /**
  * Decoding state factory for a state that can differentiate between STUN

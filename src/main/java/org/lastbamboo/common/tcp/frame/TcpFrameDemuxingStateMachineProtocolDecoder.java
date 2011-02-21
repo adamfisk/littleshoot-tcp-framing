@@ -1,6 +1,6 @@
 package org.lastbamboo.common.tcp.frame;
 
-import org.lastbamboo.common.util.mina.DemuxingStateMachineProtocolDecoder;
+import org.littleshoot.util.mina.DemuxingStateMachineProtocolDecoder;
 
 /**
  * Decoder for framed TCP messages that uses a state machine and is capable of 

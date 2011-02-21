@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.littleshoot.mina.common.ByteBuffer;
 import org.littleshoot.mina.filter.codec.ProtocolDecoderOutput;
-import org.lastbamboo.common.util.mina.DecodingState;
-import org.lastbamboo.common.util.mina.DecodingStateMachine;
-import org.lastbamboo.common.util.mina.FixedLengthDecodingState;
-import org.lastbamboo.common.util.mina.decode.binary.UnsignedShortDecodingState;
+import org.littleshoot.util.mina.DecodingState;
+import org.littleshoot.util.mina.DecodingStateMachine;
+import org.littleshoot.util.mina.FixedLengthDecodingState;
+import org.littleshoot.util.mina.decode.binary.UnsignedShortDecodingState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

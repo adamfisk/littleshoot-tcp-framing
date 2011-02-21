@@ -5,8 +5,8 @@ import java.io.OutputStream;
 
 import org.littleshoot.mina.common.ByteBuffer;
 import org.littleshoot.mina.common.IoSession;
-import org.lastbamboo.common.util.mina.AbstractIoSessionOutputStream;
-import org.lastbamboo.common.util.mina.MinaUtils;
+import org.littleshoot.util.mina.AbstractIoSessionOutputStream;
+import org.littleshoot.util.mina.MinaUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -2,7 +2,7 @@ package org.lastbamboo.common.tcp.frame;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.littleshoot.mina.common.ByteBuffer;
-import org.lastbamboo.common.util.mina.MinaUtils;
+import org.littleshoot.util.mina.MinaUtils;
 
 /**
  * Class for a single TCP frame. 
