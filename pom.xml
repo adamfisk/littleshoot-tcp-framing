@@ -12,10 +12,6 @@
         <url>http://www.littleshoot.org</url>
     </organization>
 
-    <properties>
-         <slf4j.version>1.6.1</slf4j.version>
-    </properties>
-
     <licenses>
         <license>
             <name>GNU General Public License Version 2</name> 
